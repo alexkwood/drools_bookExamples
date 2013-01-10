@@ -1,0 +1,6 @@
+The code within can be imported into Eclipse as an existing Project. 
+
+The following files and directories should be present:
+README - this file
+pom.xml - Maven project build file
+src - directory containing all main and test classes

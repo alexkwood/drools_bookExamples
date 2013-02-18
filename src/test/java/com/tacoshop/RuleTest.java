@@ -2,6 +2,7 @@ package com.tacoshop;
 
 import java.math.BigDecimal;
 
+import com.tacoshop.model.Purchase;
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;

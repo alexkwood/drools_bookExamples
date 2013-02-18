@@ -1,4 +1,4 @@
-package com.tacoshop.rules;
+package com.tacoshop.rules
 
 /**
  * DRL rules resource file for our discount rules
@@ -7,7 +7,7 @@ package com.tacoshop.rules;
  * @since Dec. 2012
  */
  
-import com.tacoshop.Purchase;
+import com.tacoshop.model.Purchase
 
 rule "purchase over 15 and less than 25 dollars"
 when

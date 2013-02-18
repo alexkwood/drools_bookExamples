@@ -7,7 +7,7 @@ import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
-import org.drools.io.impl.ClassPathResource;
+import org.drools.io.ResourceFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.rule.FactHandle;
 import org.junit.Test;
@@ -33,7 +33,7 @@ public class RuleTest {
 			
 			// seed a builder with our rules file from classpath
 			KnowledgeBuilder builder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-			builder.add(new ClassPathResource("discountRules.drl", getClass()), ResourceType.DRL);
+			builder.add(ResourceFactory.newClassPathResource("com/tacoshop/rules/discountRules.drl"), ResourceType.DRL);
 			if (builder.hasErrors()) {
 			    throw new RuntimeException(builder.getErrors().toString());
 			}

@@ -1,0 +1,41 @@
+package com.tacoshop.rules
+
+import com.tacoshop.model.Alarm
+import com.tacoshop.model.Fire
+import com.tacoshop.model.Sprinkler
+
+rule "fire detected, turn on alarm"
+when
+	Fire ( $r : room )
+	Sprinkler ( room == $r, !on )
+then
+	System.out.println("fire detected, starting alarm!");
+	insert( new Alarm($r) );
+end
+
+rule "alarm should turn on sprinklers, extinguishing fire"
+when
+	Alarm ( $r : room )
+	$s : Sprinkler ( room == $r )
+then
+	System.out.println("alarm sounding, turning on sprinklers");
+	modify( $s ){ setOn(true) };
+end
+
+rule "sprinkler came on, that puts out the fire"
+when
+    $f : Fire ( $r : room )
+    Sprinkler ( room == $r, on )
+then
+    System.out.println("sprinklers put out the fire in " + $r);
+    retract ( $f );
+end
+
+rule "fire's been put out, we should remove the alarm now"
+when
+    $a : Alarm ( $r : room )
+    not Fire ( room == $r )
+then
+    System.out.println("fire's out, we can turn off the alarm now");
+    retract ( $a );
+end
